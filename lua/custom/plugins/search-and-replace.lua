@@ -1,5 +1,6 @@
 -- search and replace
 return {
+  -- easily search for, substitute, and abbreviate multiple variants of a word
   'tpope/vim-abolish',
   config = function()
     -- Replace selection with search pattern using // in visual mode

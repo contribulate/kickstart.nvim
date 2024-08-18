@@ -1,6 +1,8 @@
 -- ranger
 return {
   {
+    -- Ranger integration in vim and neovim
+    -- 'francoiscabrol/ranger.vim',
     'kelly-lin/ranger.nvim',
     config = function()
       local ranger_nvim = require 'ranger-nvim'
