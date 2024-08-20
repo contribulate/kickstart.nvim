@@ -17,7 +17,7 @@ return {
         },
         ui = {
           border = 'none',
-          height = 1,
+          height = 0.95,
           width = 1,
           x = 0.5,
           y = 0.5,
