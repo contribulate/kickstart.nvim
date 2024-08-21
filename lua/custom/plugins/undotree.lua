@@ -1,6 +1,7 @@
 -- undotree
 return {
   'mbbill/undotree',
+  lazy = true,
   cmd = 'UndotreeToggle',
   keys = {
     { 'U', '<cmd>UndotreeToggle<cr>', desc = 'Toggle [U]ndotree' },
