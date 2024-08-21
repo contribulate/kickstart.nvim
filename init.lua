@@ -721,7 +721,6 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       {
         'SirVer/ultisnips',
-        enabled = true,
         config = function()
           -- Disable UltiSnips default shortcuts.
           -- vim.g.UltiSnipsExpandTrigger = '<nul>'
@@ -734,10 +733,6 @@ require('lazy').setup({
       },
       {
         'quangnguyen30192/cmp-nvim-ultisnips',
-        enabled = true,
-        config = function()
-          -- require('cmp_nvim_ultisnips').setup {}
-        end,
       },
 
       -- Adds other completion capabilities.

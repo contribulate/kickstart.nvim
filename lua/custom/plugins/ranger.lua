@@ -4,6 +4,23 @@ return {
     -- Ranger integration in vim and neovim
     -- 'francoiscabrol/ranger.vim',
     'kelly-lin/ranger.nvim',
+    lazy = true,
+    keys = {
+      {
+        '<leader>r',
+        function()
+          require('ranger-nvim').open(true)
+        end,
+        noremap = true,
+      },
+      {
+        '<leader>R',
+        function()
+          require('ranger-nvim').open(false)
+        end,
+        noremap = true,
+      },
+    },
     config = function()
       local ranger_nvim = require 'ranger-nvim'
       ranger_nvim.setup {
@@ -23,18 +40,6 @@ return {
           y = 0.5,
         },
       }
-      vim.api.nvim_set_keymap('n', '<leader>r', '', {
-        noremap = true,
-        callback = function()
-          ranger_nvim.open(true)
-        end,
-      })
-      vim.api.nvim_set_keymap('n', '<leader>R', '', {
-        noremap = true,
-        callback = function()
-          ranger_nvim.open(false)
-        end,
-      })
     end,
   },
 }

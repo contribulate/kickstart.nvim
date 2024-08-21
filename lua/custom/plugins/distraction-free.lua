@@ -49,6 +49,7 @@ end
 return {
   {
     'junegunn/limelight.vim',
+    lazy = true,
     cmd = 'Limelight',
     init = function()
       -- Configuration options for Limelight
@@ -58,6 +59,7 @@ return {
   },
   {
     'junegunn/goyo.vim',
+    lazy = true,
     cmd = 'Goyo',
     init = function()
       goyo_leave()
