@@ -7,5 +7,7 @@ return {
   init = function()
     -- vimtex synctex
     vim.g.vimtex_view_method = 'mupdf'
+    -- disable spell checking in tex comments
+    vim.g.vimtex_syntax_nospell_comments = 1
   end,
 }
