@@ -16,35 +16,7 @@ local function disable_autonumber()
   vim.cmd 'au! rn_autonumber'
 end
 
--- Autocommands for GoyoEnter and GoyoLeave
-local function goyo_enter()
-  if vim.fn.has 'gui_running' == 1 then
-    vim.o.fullscreen = true
-    vim.o.background = 'light'
-    vim.o.linespace = 7
-  elseif vim.fn.exists '$TMUX' == 1 then
-    vim.cmd 'silent !tmux set status off'
-  end
-  -- Disable autonumber and set options for distraction-free mode
-  disable_autonumber()
-  vim.o.wrap = false
-  vim.cmd 'Limelight'
-  vim.o.scrolloff = 999
-end
-
-local function goyo_leave()
-  vim.o.scrolloff = 3
-  vim.cmd 'Limelight!'
-  if vim.fn.has 'gui_running' == 1 then
-    vim.o.fullscreen = false
-    vim.o.background = 'dark'
-    vim.o.linespace = 0
-  elseif vim.fn.exists '$TMUX' == 1 then
-    vim.cmd 'silent !tmux set status on'
-  end
-  vim.o.wrap = true
-  enable_autonumber()
-end
+enable_autonumber()
 
 return {
   {
@@ -61,14 +33,54 @@ return {
     'junegunn/goyo.vim',
     lazy = true,
     cmd = 'Goyo',
+    keys = {
+      { '<Leader>g', '<cmd>Goyo<CR>', mode = 'n', noremap = true, silent = true },
+    },
     init = function()
-      goyo_leave()
-      -- Configuration options for Goyo
       vim.g.goyo_width = 90
-      -- Keybinding to toggle Goyo
-      vim.api.nvim_set_keymap('n', '<Leader>g', ':Goyo<CR>', { noremap = true, silent = true })
     end,
     config = function()
+      local _fullscreen, _background, _linespace, _wrap, _scrolloff, _gui, _tmux
+
+      -- Autocommands for GoyoEnter and GoyoLeave
+      local function goyo_enter()
+        _gui = false
+        _tmux = false
+        if vim.fn.has 'gui_running' == 1 then
+          _gui = true
+          _fullscreen = vim.o.fullscreen
+          vim.o.fullscreen = true
+          _background = vim.o.background
+          vim.o.background = 'light'
+          _linespace = vim.o.linespace
+          vim.o.linespace = 7
+        elseif vim.fn.exists '$TMUX' == 1 then
+          _tmux = true
+          vim.cmd 'silent !tmux set status off'
+        end
+        -- Disable autonumber and set options for distraction-free mode
+        disable_autonumber()
+        _wrap = vim.o.wrap
+        vim.o.wrap = false
+        vim.cmd 'Limelight'
+        _scrolloff = vim.o.scrolloff
+        vim.o.scrolloff = 999
+      end
+
+      local function goyo_leave()
+        vim.o.scrolloff = _scrolloff
+        vim.cmd 'Limelight!'
+        if _gui then
+          vim.o.fullscreen = _fullscreen
+          vim.o.background = _background
+          vim.o.linespace = _linespace
+        elseif _tmux then
+          vim.cmd 'silent !tmux set status on'
+        end
+        vim.o.wrap = _wrap
+        enable_autonumber()
+      end
+
       vim.api.nvim_create_autocmd('User', {
         pattern = 'GoyoEnter',
         callback = function()
