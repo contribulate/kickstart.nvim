@@ -4,4 +4,8 @@ return {
   'lervag/vimtex',
   lazy = true,
   ft = { 'tex', 'latex' },
+  init = function()
+    -- vimtex synctex
+    vim.g.vimtex_view_method = 'mupdf'
+  end,
 }
