@@ -3,5 +3,8 @@ return {
   -- A vim plugin for writing Latex quickly
   'brennier/quicktex',
   lazy = true,
-  ft = { 'tex', 'latex' },
+  event = 'InsertEnter *.tex',
+  config = function()
+    vim.api.nvim_exec_autocmds('FileType', { pattern = '<buffer>' })
+  end,
 }
