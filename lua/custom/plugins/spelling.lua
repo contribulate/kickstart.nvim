@@ -1,5 +1,5 @@
 -- spelling
---
+
 -- Define autocommands for spell checking
 vim.api.nvim_create_augroup('spelling', { clear = true })
 
