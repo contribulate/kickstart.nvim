@@ -6,11 +6,16 @@ return {
     -- Replace search with easymotion multi char search
     { '/', '<Plug>(easymotion-sn)', mode = 'n' },
     { '/', '<Plug>(easymotion-tn)', mode = 'o' },
-
     -- These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
     -- Without these mappings, `n` & `N` works fine. (These mappings just provide
     -- different highlight method and have some other features )
     { 'n', '<Plug>(easymotion-next)', mode = 'n' },
     { 'N', '<Plug>(easymotion-prev)', mode = 'n' },
+    -- JK motions: Line motions
+    { '<Leader>j', '<Plug>(easymotion-j)', mode = 'n' },
+    { '<Leader>k', '<Plug>(easymotion-k)', mode = 'n' },
   },
+  init = function()
+    vim.g.EasyMotion_do_mapping = 0
+  end,
 }
