@@ -1,5 +1,5 @@
+-- Rainbow parentheses!
 return {
-  -- Rainbow parentheses!
   'junegunn/rainbow_parentheses.vim',
   cmd = {
     'RainbowParentheses',
