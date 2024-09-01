@@ -715,7 +715,12 @@ require('lazy').setup({
             vim.fn['UltiSnips#Anon'](args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        completion = {
+          -- Open menu even if single option, autocomplete LCP,
+          -- display additional info in popup
+          -- rather than preview window.
+          completeopt = 'longest,menu,menuone,popup',
+        },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
