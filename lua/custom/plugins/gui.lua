@@ -1,6 +1,6 @@
 -- gui
 return {
-  'nvim-lua/plenary.nvim',
+  'nvim-lua/plenary.nvim', -- TODO Do not rely on a dummy dependency.
   event = 'UIEnter',
   config = function()
     -- clean up the GUI
