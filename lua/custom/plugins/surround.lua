@@ -27,4 +27,8 @@ return {
       callback = latexSurround,
     })
   end,
+  dependencies = {
+    -- enable repeating surround mappings with "."
+    'tpope/vim-repeat',
+  },
 }
